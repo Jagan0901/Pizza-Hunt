@@ -8,7 +8,7 @@ const router = express.Router();
 
 
 //SignUp 
-router.post("/signup", auth ,async(req,res)=> {
+router.post("/signup",async(req,res)=> {
     const {email,password} = req.body;
     console.log(email,password);
 
