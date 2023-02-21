@@ -32,7 +32,7 @@ router.post("/signup",async(req,res)=> {
     }
     const hashedPassword = await genPassword(password);
     const create = await createUser(email,hashedPassword);
-    res.send(create);
+    res.send(create,{message:"Created Successfully"});
 });
 
 
