@@ -14,7 +14,7 @@ router.post("/signup",async(req,res)=> {
 
     //To set Email Pattern
     if(!/^[\w]{1,}[\w.+-]{0,}@[\w-]{2,}([.][a-zA-Z]{2,}|[.][\w-]{2,}[.][a-zA-Z]{2,})$/g.test(email)){
-        res.status(400).send({message: "Invalid Email Pattern"})
+        res.status(400).send({error: "Invalid Email Pattern"})
         return;
     }
 
@@ -27,7 +27,7 @@ router.post("/signup",async(req,res)=> {
 
     //To set Password Pattern
     if(!/^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?=(.*[\W]){1,})(?!.*\s).{8,}$/g.test(password)){
-        res.status(400).send({message: "Invalid Password Pattern"})
+        res.status(400).send({error: "Invalid Password Pattern"})
         return;
     }
     const hashedPassword = await genPassword(password);
@@ -45,7 +45,7 @@ router.post("/login",auth, async(req,res)=> {
     const userFromDB = await getUserByMail(email);
     console.log(userFromDB);
     if(!userFromDB){
-        res.status(400).send({message: "Email or Password does not exist"})
+        res.status(400).send({error: "Email or Password does not exist"})
         return;
     }
 
@@ -53,7 +53,7 @@ router.post("/login",auth, async(req,res)=> {
     //To compare entered password and DB password are same
     const isPasswordMatch = await bcrypt.compare(password,storedDBPassword);
     if(!isPasswordMatch){
-        res.status(400).send({message: "Email or Password does not exist"})
+        res.status(400).send({error: "Email or Password does not exist"})
         return;
     }
     
