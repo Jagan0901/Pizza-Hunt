@@ -45,7 +45,7 @@ router.post("/login", async(req,res)=> {
     const userFromDB = await getUserByMail(email);
     console.log(userFromDB);
     if(!userFromDB){
-        res.status(400).send({error: "Email or Password does not exist"})
+        res.status(400).send({error: "Invalid Email or Password"})
         return;
     }
 
@@ -53,7 +53,7 @@ router.post("/login", async(req,res)=> {
     //To compare entered password and DB password are same
     const isPasswordMatch = await bcrypt.compare(password,storedDBPassword);
     if(!isPasswordMatch){
-        res.status(400).send({error: "Email or Password does not exist"})
+        res.status(400).send({error: "Invalid Email or Password"})
         return;
     }
     
