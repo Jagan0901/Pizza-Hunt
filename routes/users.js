@@ -8,7 +8,7 @@ const router = express.Router();
 
 
 //SignUp 
-router.post("/signup",async(req,res)=> {
+router.post("/signup",auth,async(req,res)=> {
     const {email,password} = req.body;
     console.log(email,password);
 
@@ -38,7 +38,7 @@ router.post("/signup",async(req,res)=> {
 
 
 //Login
-router.post("/login", async(req,res)=> {
+router.post("/login",auth, async(req,res)=> {
     const{email,password} = req.body;
     console.log(email,password);
     
