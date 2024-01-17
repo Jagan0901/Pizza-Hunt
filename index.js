@@ -10,7 +10,15 @@ dotenv.config();
 
 const app = express();
 
-app.use(cors());
+// app.use(cors());
+const corsOptions = {
+  origin: "https://pizzas-hunt.netlify.app",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  credentials: true,
+  optionsSuccessStatus: 204,
+};
+
+app.use(cors(corsOptions));
 
 const PORT = process.env.PORT;
 
@@ -18,12 +26,6 @@ const MONGO_URL = process.env.MONGO_URL;
 
 app.use(express.json());
 
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "https://pizzas-hunt.netlify.app/");
-  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-  res.header("Access-Control-Allow-Headers", "Content-Type");
-  next();
-});
 
 async function createConnection(){
     const client = new MongoClient(MONGO_URL);
