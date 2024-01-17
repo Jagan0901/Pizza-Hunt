@@ -10,15 +10,15 @@ dotenv.config();
 
 const app = express();
 
-// app.use(cors());
-const corsOptions = {
-  origin: "https://pizzas-hunt.netlify.app",
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  credentials: true,
-  optionsSuccessStatus: 204,
-};
+app.use(cors());
+// const corsOptions = {
+//   origin: "https://pizzas-hunt.netlify.app",
+//   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+//   credentials: true,
+//   optionsSuccessStatus: 204,
+// };
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 
 const PORT = process.env.PORT;
 
